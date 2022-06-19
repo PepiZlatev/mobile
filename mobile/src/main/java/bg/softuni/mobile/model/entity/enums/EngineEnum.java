@@ -1,6 +1,6 @@
 package bg.softuni.mobile.model.entity.enums;
 
-public enum Engine {
+public enum EngineEnum {
     GASOLINE,
     DIESEL,
     ELECTRIC,

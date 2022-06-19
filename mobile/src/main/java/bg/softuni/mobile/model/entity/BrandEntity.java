@@ -12,7 +12,7 @@ public class BrandEntity extends BaseEntity {
     private String name;
 
 
-    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ModelEntity> models = new ArrayList<>();
 
     public String getName() {

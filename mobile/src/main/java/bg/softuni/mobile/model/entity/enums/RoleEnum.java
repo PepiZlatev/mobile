@@ -1,6 +1,7 @@
 package bg.softuni.mobile.model.entity.enums;
 
-public enum Role {
+public enum RoleEnum {
     USER,
-    ADMIN
+    ADMIN,
+    MODERATOR
 }

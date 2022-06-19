@@ -9,33 +9,33 @@ import java.util.List;
 public class UserEntity extends BaseEntity{
 
     @Column(name = "user_name", nullable = false)
-    private String username;
+    private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "is_active")
     private boolean isActive;
 
-    @Column(name = "image_url", nullable = false)
+    @Column(name = "image_url")
     private String imageURL;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<UserRoleEntity> userRoleEntities = new ArrayList<>();
+    private List<UserRoleEntity> userRoles = new ArrayList<>();
 
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public UserEntity setUsername(String username) {
-        this.username = username;
+    public UserEntity setEmail(String username) {
+        this.email = username;
         return this;
     }
 
@@ -76,11 +76,11 @@ public class UserEntity extends BaseEntity{
     }
 
     public List<UserRoleEntity> getUserRoles() {
-        return userRoleEntities;
+        return userRoles;
     }
 
     public UserEntity setUserRoles(List<UserRoleEntity> userRoleEntities) {
-        this.userRoleEntities = userRoleEntities;
+        this.userRoles = userRoleEntities;
         return this;
     }
 
@@ -91,5 +91,23 @@ public class UserEntity extends BaseEntity{
     public UserEntity setImageURL(String imageURL) {
         this.imageURL = imageURL;
         return this;
+    }
+
+    public UserEntity addRole(UserRoleEntity userRole) {
+        this.userRoles.add(userRole);
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isActive=" + isActive +
+                ", imageURL='" + imageURL + '\'' +
+                ", userRoles=" + userRoles +
+                '}';
     }
 }

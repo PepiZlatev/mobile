@@ -1,7 +1,7 @@
 package bg.softuni.mobile.model.entity;
 
 
-import bg.softuni.mobile.model.entity.enums.Role;
+import bg.softuni.mobile.model.entity.enums.RoleEnum;
 
 import javax.persistence.*;
 
@@ -13,7 +13,8 @@ public class UserRoleEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(nullable = false)
+    private RoleEnum roles;
 
     public Long getId() {
         return id;
@@ -24,12 +25,20 @@ public class UserRoleEntity {
         return this;
     }
 
-    public Role getRole() {
-        return role;
+    public RoleEnum getRole() {
+        return roles;
     }
 
-    public UserRoleEntity setRole(Role role) {
-        this.role = role;
+    public UserRoleEntity setRole(RoleEnum roles) {
+        this.roles = roles;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRoleEntity{" +
+                "id=" + id +
+                ", roles=" + roles +
+                '}';
     }
 }

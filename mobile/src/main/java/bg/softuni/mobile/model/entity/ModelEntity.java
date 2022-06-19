@@ -11,6 +11,7 @@ public class ModelEntity extends BaseEntity {
     @Column(name = "model_name", nullable = false)
     private String name;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
 
@@ -79,5 +80,17 @@ public class ModelEntity extends BaseEntity {
     public ModelEntity setBrand(BrandEntity brand) {
         this.brand = brand;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ModelEntity{" +
+                "name='" + name + '\'' +
+                ", category=" + category +
+                ", imageURL='" + imageURL + '\'' +
+                ", startYear=" + startYear +
+                ", endYear=" + endYear +
+                ", brand=" + (brand != null ? brand.getName() : null) +
+                '}';
     }
 }

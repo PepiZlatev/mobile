@@ -1,7 +1,7 @@
 package bg.softuni.mobile.model.entity;
 
-import bg.softuni.mobile.model.entity.enums.Engine;
-import bg.softuni.mobile.model.entity.enums.Transmission;
+import bg.softuni.mobile.model.entity.enums.EngineEnum;
+import bg.softuni.mobile.model.entity.enums.TransmissionEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,13 +10,14 @@ import java.math.BigDecimal;
 @Table(name = "offers")
 public class OfferEntity extends BaseEntity{
 
+    @Column(name = "description")
     private String description;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Engine engine;
+    private EngineEnum engine;
 
-    @Column(nullable = false)
+    @Column(name = "image_url", nullable = false)
     private String imageURL;
 
     private int mileage;
@@ -26,7 +27,7 @@ public class OfferEntity extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Transmission transmission;
+    private TransmissionEnum transmission;
 
     private int year;
 
@@ -45,11 +46,11 @@ public class OfferEntity extends BaseEntity{
         return this;
     }
 
-    public Engine getEngine() {
+    public EngineEnum getEngine() {
         return engine;
     }
 
-    public OfferEntity setEngine(Engine engine) {
+    public OfferEntity setEngine(EngineEnum engine) {
         this.engine = engine;
         return this;
     }
@@ -81,11 +82,11 @@ public class OfferEntity extends BaseEntity{
         return this;
     }
 
-    public Transmission getTransmission() {
+    public TransmissionEnum getTransmission() {
         return transmission;
     }
 
-    public OfferEntity setTransmission(Transmission transmission) {
+    public OfferEntity setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
         return this;
     }
