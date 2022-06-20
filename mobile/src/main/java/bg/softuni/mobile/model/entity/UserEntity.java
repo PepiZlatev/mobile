@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity{
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "password")

@@ -1,0 +1,1 @@
+insert into users (id, created, modified, email, first_name, image_url, is_active, last_name, password) values (1, null, null, 'mustermann@mail.com', 'Max', null, 1, 'Mustermann', 'temppassword')
