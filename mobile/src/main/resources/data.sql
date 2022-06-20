@@ -1,1 +1,1 @@
-insert into users (id, created, modified, email, first_name, image_url, is_active, last_name, password) values (1, null, null, 'mustermann@mail.com', 'Max', null, 1, 'Mustermann', 'temppassword')
+insert into users (id, created, modified, email, first_name, image_url, is_active, last_name, password) values (1, null, null, 'mustermann@mail.com', 'Max', null, 1, 'Mustermann', '656aa7b12d89c8efef934a2c76900e6c09bb79b7e17dd83ec883a19a87afb7b1585875cf92edabe6')

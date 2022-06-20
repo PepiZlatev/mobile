@@ -6,6 +6,7 @@ import bg.softuni.mobile.repository.UserRepository;
 import bg.softuni.mobile.user.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,10 +18,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private CurrentUser currentUser;
+    private PasswordEncoder encoder;
 
-    public UserService(UserRepository userRepository, CurrentUser currentUser) {
+    public UserService(UserRepository userRepository, CurrentUser currentUser, PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.currentUser = currentUser;
+        this.encoder = encoder;
     }
 
     public boolean login(UserLoginDTO userLoginDTO){
@@ -34,7 +37,10 @@ public class UserService {
         }
 
         //Checks if the password is the same or not
-        boolean success = userOpt.get().getPassword().equals(userLoginDTO.getPassword());
+        String rawPassword = userLoginDTO.getPassword();
+        String encodedPassword = userOpt.get().getPassword();
+
+        boolean success = encoder.matches(rawPassword, encodedPassword);
 
         if (success) {
             login(userOpt.get());
