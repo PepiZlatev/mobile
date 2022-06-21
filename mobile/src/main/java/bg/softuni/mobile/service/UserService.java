@@ -1,6 +1,7 @@
 package bg.softuni.mobile.service;
 
 import bg.softuni.mobile.model.dto.UserLoginDTO;
+import bg.softuni.mobile.model.dto.UserRegisterDTO;
 import bg.softuni.mobile.model.entity.UserEntity;
 import bg.softuni.mobile.repository.UserRepository;
 import bg.softuni.mobile.user.CurrentUser;
@@ -26,19 +27,31 @@ public class UserService {
         this.encoder = encoder;
     }
 
-    public boolean login(UserLoginDTO userLoginDTO){
+    public void registerAndLogin(UserRegisterDTO userRegisterDTO) {
+        UserEntity newUser = new UserEntity()
+                .setActive(true)
+                .setEmail(userRegisterDTO.getEmail())
+                .setFirstName(userRegisterDTO.getFirstName())
+                .setLastName(userRegisterDTO.getLastName())
+                .setPassword(encoder.encode(userRegisterDTO.getPassword()));
+
+        newUser = userRepository.save(newUser);
+        login(newUser);
+    }
+
+    public boolean login(UserLoginDTO loginDTO) {
         //Find user by username (in that case email)
-        Optional<UserEntity> userOpt = userRepository.findByEmail(userLoginDTO.getUsername());
+        Optional<UserEntity> userOpt = userRepository.findByEmail(loginDTO.getUsername());
 
         //If there is no such user, print message and return false
         if (userOpt.isEmpty()) {
-            LOGGER.info("User with name [{}] not found!", userLoginDTO.getUsername());
+            LOGGER.info("User with name [{}] not found!", loginDTO.getUsername());
             return false;
         }
 
         //Checks if the password is the same or not
-        String rawPassword = userLoginDTO.getPassword();
-        String encodedPassword = userOpt.get().getPassword();
+        var rawPassword = loginDTO.getPassword();
+        var encodedPassword = userOpt.get().getPassword();
 
         boolean success = encoder.matches(rawPassword, encodedPassword);
 
@@ -50,6 +63,7 @@ public class UserService {
 
         return success;
     }
+
     private void login(UserEntity userEntity) {
         currentUser.setLoggedIn(true).setName(userEntity.getFirstName() + " " + userEntity.getLastName());
     }
