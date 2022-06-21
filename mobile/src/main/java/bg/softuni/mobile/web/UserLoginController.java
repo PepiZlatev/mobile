@@ -4,9 +4,12 @@ import bg.softuni.mobile.model.dto.UserLoginDTO;
 import bg.softuni.mobile.model.dto.UserRegisterDTO;
 import bg.softuni.mobile.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 //Controller works with services, have Model as input and return a Model as output.
 //Inside the controller class the entities are encapsulated.
@@ -36,16 +39,4 @@ public class UserLoginController {
         userService.login(userLoginDTO);
         return "redirect:/";
     }
-
-    @GetMapping("/register")
-    public String register() {
-        return "auth-register";
-    }
-
-    @PostMapping("/register")
-    public String register(UserRegisterDTO userRegisterDTO) {
-        userService.registerAndLogin(userRegisterDTO);
-        return "redirect:/";
-    }
-
 }
