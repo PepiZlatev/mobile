@@ -1,7 +1,7 @@
 package bg.softuni.mobile.model.entity;
 
 
-import bg.softuni.mobile.model.entity.enums.RoleEnum;
+import bg.softuni.mobile.model.enums.RoleEnum;
 
 import javax.persistence.*;
 
