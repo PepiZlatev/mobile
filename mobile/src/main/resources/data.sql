@@ -1,1 +1,5 @@
-insert into users (id, created, modified, email, first_name, image_url, is_active, last_name, password) values (1, null, null, 'mustermann@mail.com', 'Max', null, 1, 'Mustermann', '656aa7b12d89c8efef934a2c76900e6c09bb79b7e17dd83ec883a19a87afb7b1585875cf92edabe6')
+insert into users (id, created, modified, email, first_name, image_url, is_active, last_name, password) values (1, null, null, 'mustermann@mail.com', 'Max', null, 1, 'Mustermann', '656aa7b12d89c8efef934a2c76900e6c09bb79b7e17dd83ec883a19a87afb7b1585875cf92edabe6');
+
+insert into brands(id, created, modified, brand_name) values (1, null, null, 'Ford'), (2, null, null, 'Toyota');
+
+insert into models(id, created, modified, category, end_prod_year, image_url, model_name, start_prod_year, brand_id) values (1, null, null, 'CAR', null, 'https://i.auto-bild.de/ir_img/2/3/4/7/5/4/5/da91ce721453296d.jpg', 'Focus', 1976, 1), (2, null, null, 'CAR', null, 'https://cdn.motor1.com/images/mgl/qpOjy/s1/2020-ford-fiesta.webp', 'Shelby', 1990, 1), (3, null, null, 'CAR', null, 'https://cdn.motor1.com/images/mgl/JJZxA/s1/toyota-supra-35th-anniversary-special-edition.jpg', 'Yaris', 1998, 2);

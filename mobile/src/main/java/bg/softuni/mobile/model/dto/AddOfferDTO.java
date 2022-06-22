@@ -3,13 +3,31 @@ package bg.softuni.mobile.model.dto;
 import bg.softuni.mobile.model.enums.EngineEnum;
 import bg.softuni.mobile.model.enums.TransmissionEnum;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public class AddOfferDTO {
 
     @NotNull
+    @Min(1)
+    private Long modelId;
+
+    @NotNull
     private EngineEnum engine;
+
+    @Positive
+    @NotNull
+    private Integer price;
+
+
+    @Min(1980)
+    @NotNull
+    private Integer year;
+
+    @NotEmpty
+    private String description;
 
     @NotNull
     private TransmissionEnum transmission;
@@ -41,6 +59,15 @@ public class AddOfferDTO {
 
     public AddOfferDTO setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
+        return this;
+    }
+
+    public Long getModelId() {
+        return modelId;
+    }
+
+    public AddOfferDTO setModelId(Long modelId) {
+        this.modelId = modelId;
         return this;
     }
 }
